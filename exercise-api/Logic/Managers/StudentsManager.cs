@@ -113,11 +113,11 @@ namespace Logic.Managers
                 {
                     if (string.IsNullOrEmpty(student.FirstName))
                     {
-                        throw new LogicException("You must to add a FirstName to create the student.");
+                        throw new LogicException("You must to add a FirstName to edit the student.");
                     }
                     if (string.IsNullOrEmpty(student.LastName))
                     {
-                        throw new LogicException("You must to add a LastName to create this student.");
+                        throw new LogicException("You must to add a LastName to edit this student.");
                     }
                     studentToEdit.FirstName = student.FirstName;
                     studentToEdit.LastName = student.LastName;
