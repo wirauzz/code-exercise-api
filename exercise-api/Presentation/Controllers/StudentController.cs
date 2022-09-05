@@ -45,7 +45,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPut]
-        [Route("{assetId}")]
+        [Route("{studentId}")]
         public async Task<ActionResult> PutAsset([FromRoute, Required] Guid studentId, [FromBody, Required] StudentDTO student)
         {
             return Ok(await _studentManager.UpdateById(studentId, student));
