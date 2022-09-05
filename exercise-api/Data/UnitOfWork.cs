@@ -1,8 +1,9 @@
-﻿using Data.Repository;
+﻿using Data.Exceptions;
+using Data.Repository;
 using Data.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Data
 {
@@ -21,6 +22,7 @@ namespace Data
         {
             get
             {
+                CheckConnection();
                 return _student;
             }
         }
@@ -39,12 +41,47 @@ namespace Data
         {
             _enrollmentDBContext.Database.RollbackTransaction();
         }
-
+        public void CheckConnection()
+        {
+            try
+            {
+                _enrollmentDBContext.Database.OpenConnection();
+                _enrollmentDBContext.Database.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                throw new DBConnetionException($"Can not connect to Database", ex.InnerException);
+            }
+        }
         public void Save()
         {
-            BeginTransaction();
-            _enrollmentDBContext.SaveChanges();
-            CommitTransaction();
+            try
+            {
+                BeginTransaction();
+                _enrollmentDBContext.SaveChanges();
+                CommitTransaction();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                RollBackTransaction();
+                string message = $"Error to save changes on Database -> Save() {Environment.NewLine}Message: {ex.Message}{Environment.NewLine}";
+                Log.Error(ex, $"{message}{Environment.NewLine} Stack trace: {Environment.NewLine}");
+                throw new DataException("Can not save changes, error in Database", ex.InnerException);
+            }
+            catch (DbUpdateException ex)
+            {
+                RollBackTransaction();
+                string message = $"Error to save changes on Database -> Save() {Environment.NewLine}Message: {ex.Message}{Environment.NewLine}";
+                Log.Error(ex, $"{message}{Environment.NewLine} Stack trace: {Environment.NewLine}");
+                throw new DataException("Can not save changes, error in Database", ex.InnerException);
+            }
+            catch (Exception ex)
+            {
+                RollBackTransaction();
+                string message = $"Error to save changes on Database -> Save() {Environment.NewLine}Message: {ex.Message}{Environment.NewLine}";
+                Log.Error(ex, $"{message}{Environment.NewLine} Stack trace: {Environment.NewLine}");
+                throw new DataException("Can not save changes, error in Database", ex.InnerException);
+            }
         }
     }
 }
