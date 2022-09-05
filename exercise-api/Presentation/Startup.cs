@@ -12,9 +12,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Presentation
@@ -49,6 +52,27 @@ namespace Presentation
             services.AddScoped<IMapper<StudentDTO, Student>, StudentMapper>();
 
             services.AddControllers();
+
+            services.AddSwaggerGenNewtonsoftSupport();
+            services.AddSwaggerGen();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = Configuration.GetSection("EnrollmentsInfo")["Name"],
+                    Version = Configuration.GetSection("EnrollmentsInfo")["Version"],
+                    Description = Configuration.GetSection("EnrollmentsInfo")["Description"],
+                });
+            });
+
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.EnableAnnotations();
+
+                var file = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var filePath = Path.Combine(AppContext.BaseDirectory, file);
+                options.IncludeXmlComments(filePath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +89,12 @@ namespace Presentation
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", Configuration.GetSection("ProductsInfo")["Name"]);
             });
         }
     }

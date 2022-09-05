@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1972
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8EFF1DAA-5601-4C40-B4F0-EE717013C901}"
 EndProject
@@ -21,6 +21,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{D38CAD04-8854-4569-A552-21FA9F6A5977}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentation\Presentation.csproj", "{89B19ACF-49A6-4A07-92D9-B4E6EF20A3E0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{45AB9757-65F5-4FB7-A45E-71494A4773C2} = {45AB9757-65F5-4FB7-A45E-71494A4773C2}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
