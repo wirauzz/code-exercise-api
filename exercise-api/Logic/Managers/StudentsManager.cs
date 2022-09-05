@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Managers
 {
-    class StudentsManager : IStudentsManager
+    public class StudentsManager : IStudentsManager
     {
         public readonly IUnitOfWork _uow;
         public readonly IMapper<StudentDTO, Student> _mapper;
