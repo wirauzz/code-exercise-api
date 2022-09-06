@@ -4,5 +4,111 @@
         <name>Presentation</name>
     </assembly>
     <members>
+        <member name="M:Presentation.Controllers.ClassController.GeAllClasses">
+            <summary>
+            Returns all Classs
+            </summary>
+            <remarks>Get all Classs</remarks>
+            <response code="200">Success or some expected Error</response>
+        </member>
+        <member name="M:Presentation.Controllers.ClassController.GetClass(System.Guid)">
+            <summary>
+            Returns a specific Class
+            </summary>
+            <remarks>Get Class by Id, Class id must be a unique identifier</remarks>
+            <response code="200">Success or some expected Error</response>
+        </member>
+        <member name="M:Presentation.Controllers.ClassController.PostClass(Logic.Models.ClassDTO)">
+            <summary>
+            Creates a new Class and returns it as it is in DB
+            </summary>
+            <param name="ClassDTO">
+            The new Class with its information
+            ## Body 
+            
+                {
+                   "title" : "Programacion II",
+                   "description" : "OOP"
+                }
+            </param>
+            <response code="200">Success or some expected Error</response>
+        </member>
+        <member name="M:Presentation.Controllers.ClassController.DeleteClass(System.Guid)">
+            <summary>
+            Deletes a specific Class
+            </summary>
+            <param name="ClassId">Id of the Class to delete.</param>
+            <remarks>Delete Class by Id. Class id is a unique identifier</remarks>
+            <response code="200">True on success, or some expected Error</response>
+        </member>
+        <member name="M:Presentation.Controllers.ClassController.PutClass(System.Guid,Logic.Models.ClassDTO)">
+            <summary>
+            Updates an Class and returns it as it is in DB
+            </summary>
+            <param name="ClassId">unique identifier of Class id</param>
+            <param name="Class">
+            Class data to update
+            ## Body 
+            
+                {
+                   "title" : "Programacion II",
+                   "description" : "OOP"
+                }
+            </param>
+            <response code="200">Success or some expected Error</response>
+        </member>
+        <member name="M:Presentation.Controllers.StudentController.GeAllStudens">
+            <summary>
+            Returns all Students
+            </summary>
+            <remarks>Get all Students</remarks>
+            <response code="200">Success or some expected Error</response>
+        </member>
+        <member name="M:Presentation.Controllers.StudentController.GetStudent(System.Guid)">
+            <summary>
+            Returns a specific Student
+            </summary>
+            <remarks>Get Student by Id, Student id must be a unique identifier</remarks>
+            <response code="200">Success or some expected Error</response>
+        </member>
+        <member name="M:Presentation.Controllers.StudentController.PostStudent(Logic.Models.StudentDTO)">
+            <summary>
+            Creates a new Student and returns it as it is in DB
+            </summary>
+            <param name="studentDTO">
+            The new Student with its information
+            ## Body 
+            
+                {
+                   "firstName" : "Wilson",
+                   "lastName" : "Ramirez",
+                }
+            </param>
+            <response code="200">Success or some expected Error</response>
+        </member>
+        <member name="M:Presentation.Controllers.StudentController.DeleteStudent(System.Guid)">
+            <summary>
+            Deletes a specific Student
+            </summary>
+            <param name="studentId">Id of the Student to delete.</param>
+            <remarks>Delete Student by Id. Student id is a unique identifier</remarks>
+            <response code="200">True on success, or some expected Error</response>
+        </member>
+        <member name="M:Presentation.Controllers.StudentController.PutStudent(System.Guid,Logic.Models.StudentDTO)">
+            <summary>
+            Updates an Student and returns it as it is in DB
+            </summary>
+            <param name="studentId">unique identifier of Student id</param>
+            <param name="student">
+            Student data to update
+            ## Body 
+            
+                {
+                   "firstName" : "Wilson",
+                   "lastName" : "Ramirez",
+                }
+            </param>
+            <response code="200">Success or some expected Error</response>
+        </member>
     </members>
 </doc>
