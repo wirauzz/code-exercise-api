@@ -58,9 +58,11 @@ namespace Presentation
 
             services.AddDbContext<EnrollmentDBContext>();
             services.AddTransient<IStudentsManager, StudentsManager>();
+            services.AddTransient<IClassManager, ClassManager>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMapper<StudentDTO, Student>, StudentMapper>();
+            services.AddScoped<IMapper<ClassDTO, Class>, ClassMapper>();
 
             services.AddControllers();
 
