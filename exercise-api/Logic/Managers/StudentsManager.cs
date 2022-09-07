@@ -7,8 +7,8 @@ using Logic.Models.Mapper;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Logic.Managers
 {
@@ -78,6 +78,12 @@ namespace Logic.Managers
                 throw new LogicException(ex.Message, ex.InnerException);
             }
 
+        }
+
+        public async Task<IEnumerable<StudentDTO>> SearchStudentByName(string name)
+        {
+            IEnumerable<StudentDTO> students = await AllStudents();
+            return students.Where(student => student.FirstName.ToLower().Trim().Contains(name.ToLower().Trim()));
         }
 
         public async Task<StudentDTO> StudentById(Guid studentId)

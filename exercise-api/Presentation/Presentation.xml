@@ -63,6 +63,7 @@
             </summary>
             <remarks>Get all Students</remarks>
             <response code="200">Success or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
         </member>
         <member name="M:Presentation.Controllers.StudentController.GetStudent(System.Guid)">
             <summary>
@@ -70,6 +71,7 @@
             </summary>
             <remarks>Get Student by Id, Student id must be a unique identifier</remarks>
             <response code="200">Success or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
         </member>
         <member name="M:Presentation.Controllers.StudentController.PostStudent(Logic.Models.StudentDTO)">
             <summary>
@@ -85,6 +87,7 @@
                 }
             </param>
             <response code="200">Success or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
         </member>
         <member name="M:Presentation.Controllers.StudentController.DeleteStudent(System.Guid)">
             <summary>
@@ -93,6 +96,7 @@
             <param name="studentId">Id of the Student to delete.</param>
             <remarks>Delete Student by Id. Student id is a unique identifier</remarks>
             <response code="200">True on success, or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
         </member>
         <member name="M:Presentation.Controllers.StudentController.PutStudent(System.Guid,Logic.Models.StudentDTO)">
             <summary>
@@ -109,6 +113,16 @@
                 }
             </param>
             <response code="200">Success or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
+        </member>
+        <member name="M:Presentation.Controllers.StudentController.GetProfileByUserName(System.String)">
+            <summary>
+            Search a student by the first name.
+            </summary>
+            <param name="firstName">First name of the user.</param>
+            <returns>Returns student information found by first name</returns>
+            <response code="200">Success</response>
+            <response code="500">Can not connect with the database</response>
         </member>
     </members>
 </doc>

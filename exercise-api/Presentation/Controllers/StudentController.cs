@@ -27,6 +27,7 @@ namespace Presentation.Controllers
         /// </summary>
         /// <remarks>Get all Students</remarks>
         /// <response code="200">Success or some expected Error</response>
+        /// <response code="500">Can not connect with the database</response>
         [ProducesResponseType(typeof(MiddlewareResponse<IEnumerable<StudentDTO>>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [HttpGet]
@@ -40,6 +41,7 @@ namespace Presentation.Controllers
         /// </summary>
         /// <remarks>Get Student by Id, Student id must be a unique identifier</remarks>
         /// <response code="200">Success or some expected Error</response>
+        /// <response code="500">Can not connect with the database</response>
         [ProducesResponseType(typeof(MiddlewareResponse<StudentDTO>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [HttpGet("{studentId}")]
@@ -61,6 +63,7 @@ namespace Presentation.Controllers
         ///     }
         /// </param>
         /// <response code="200">Success or some expected Error</response>
+        /// <response code="500">Can not connect with the database</response>
         [ProducesResponseType(typeof(MiddlewareResponse<StudentDTO>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [HttpPost]
@@ -75,6 +78,7 @@ namespace Presentation.Controllers
         /// <param name="studentId">Id of the Student to delete.</param>
         /// <remarks>Delete Student by Id. Student id is a unique identifier</remarks>
         /// <response code="200">True on success, or some expected Error</response>
+        /// <response code="500">Can not connect with the database</response>
         [ProducesResponseType(typeof(MiddlewareResponse<bool>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [HttpDelete("{studentId}")]
@@ -97,6 +101,7 @@ namespace Presentation.Controllers
         ///     }
         /// </param>
         /// <response code="200">Success or some expected Error</response>
+        /// <response code="500">Can not connect with the database</response>
         [ProducesResponseType(typeof(MiddlewareResponse<StudentDTO>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [HttpPut]
@@ -104,6 +109,21 @@ namespace Presentation.Controllers
         public async Task<ActionResult> PutStudent([FromRoute, Required] Guid studentId, [FromBody, Required] StudentDTO student)
         {
             return Ok(new MiddlewareResponse<StudentDTO>(await _studentManager.UpdateById(studentId, student)));
+        }
+
+        /// <summary>
+        /// Search a student by the first name.
+        /// </summary>
+        /// <param name="firstName">First name of the user.</param>
+        /// <returns>Returns student information found by first name</returns>
+        /// <response code="200">Success</response>
+        /// <response code="500">Can not connect with the database</response>
+        [ProducesResponseType(typeof(MiddlewareResponse<IEnumerable<StudentDTO>>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [HttpGet("search")]
+        public async Task<IActionResult> GetProfileByUserName([FromQuery] string firstName)
+        {
+            return Ok(new MiddlewareResponse<IEnumerable<StudentDTO>>(await _studentManager.SearchStudentByName(firstName)));
         }
     }
 }

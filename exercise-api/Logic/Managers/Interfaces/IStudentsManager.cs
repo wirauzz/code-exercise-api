@@ -13,5 +13,7 @@ namespace Logic.Managers.Interfaces
         Task<StudentDTO> UpdateById(Guid studentId, StudentDTO studentStateDTO);
         Task<StudentDTO> StudentById(Guid studentId);
         Task<bool> DeleteStudent(Guid studentId);
+        Task<IEnumerable<StudentDTO>> SearchStudentByName(string name);
+
     }
 }
