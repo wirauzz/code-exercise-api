@@ -7,6 +7,8 @@ namespace Data
     {
         IStudentRepository StudentRepository { get; }
         IClassRepository ClassRepository { get; }
+
+        IEnrollmentRepository EnrollmentRepository { get; }
         void BeginTransaction();
         void CommitTransaction();
         void RollBackTransaction();
