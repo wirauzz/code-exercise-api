@@ -66,6 +66,82 @@
             <response code="200">Success</response>
             <response code="500">Can not connect with the database</response>
         </member>
+        <member name="M:Presentation.Controllers.EnrollmentController.GeAllStudens">
+            <summary>
+            Returns all Enrollments
+            </summary>
+            <remarks>Get all Enrollments</remarks>
+            <response code="200">Success or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
+        </member>
+        <member name="M:Presentation.Controllers.EnrollmentController.GetEnrollment(System.Guid)">
+            <summary>
+            Returns a specific Enrollment
+            </summary>
+            <remarks>Get Enrollment by Id, Enrollment id must be a unique identifier</remarks>
+            <response code="200">Success or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
+        </member>
+        <member name="M:Presentation.Controllers.EnrollmentController.PostEnrollment(Logic.Models.EnrollmentDTO)">
+            <summary>
+            Creates a new Enrollment and returns it as it is in DB
+            </summary>
+            <param name="enrollmentDTO">
+            The new Enrollment with its information
+            ## Body 
+            
+                {
+                   "CourseId" : "63e9d868-b357-41cb-a720-4e04008ccdf9",
+                   "StudentId" : "aa33143e-d49d-4a87-9b79-7ae4cdd9a863",
+                }
+            </param>
+            <response code="200">Success or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
+        </member>
+        <member name="M:Presentation.Controllers.EnrollmentController.DeleteEnrollment(System.Guid)">
+            <summary>
+            Deletes a specific Enrollment
+            </summary>
+            <param name="enrollmentId">Id of the Enrollment to delete.</param>
+            <remarks>Delete Enrollment by Id. Enrollment id is a unique identifier</remarks>
+            <response code="200">True on success, or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
+        </member>
+        <member name="M:Presentation.Controllers.EnrollmentController.PutEnrollment(System.Guid,Logic.Models.EnrollmentDTO)">
+            <summary>
+            Updates an Enrollment and returns it as it is in DB
+            </summary>
+            <param name="enrollmentId">unique identifier of Enrollment id</param>
+            <param name="enrollment">
+            Enrollment data to update
+            ## Body 
+            
+                {
+                   "CourseId" : "63e9d868-b357-41cb-a720-4e04008ccdf9",
+                   "StudentId" : "aa33143e-d49d-4a87-9b79-7ae4cdd9a863",
+                }
+            </param>
+            <response code="200">Success or some expected Error</response>
+            <response code="500">Can not connect with the database</response>
+        </member>
+        <member name="M:Presentation.Controllers.EnrollmentController.GetEnrollmentsOfStudents(System.Guid)">
+            <summary>
+            Search a enrollment by the first name.
+            </summary>
+            <param name="firstName">First name of the user.</param>
+            <returns>Returns enrollment information found by first name</returns>
+            <response code="200">Success</response>
+            <response code="500">Can not connect with the database</response>
+        </member>
+        <member name="M:Presentation.Controllers.EnrollmentController.GetEnrollmentsOfClasses(System.Guid)">
+            <summary>
+            Search a enrollment by the first name.
+            </summary>
+            <param name="firstName">First name of the user.</param>
+            <returns>Returns enrollment information found by first name</returns>
+            <response code="200">Success</response>
+            <response code="500">Can not connect with the database</response>
+        </member>
         <member name="M:Presentation.Controllers.StudentController.GeAllStudens">
             <summary>
             Returns all Students
