@@ -12,12 +12,14 @@ namespace Data
         private readonly EnrollmentDBContext _enrollmentDBContext;
         private readonly IStudentRepository _student;
         private readonly IClassRepository _class;
+        private readonly IEnrollmentRepository _enrollment;
 
         public UnitOfWork(EnrollmentDBContext dBContext)
         {
             _enrollmentDBContext = dBContext;
             _student = new StudentRepository(_enrollmentDBContext);
             _class = new ClassRepository(_enrollmentDBContext);
+            _enrollment = new EnrollmentRepository(_enrollmentDBContext);
         }
 
         public IStudentRepository StudentRepository
@@ -35,6 +37,15 @@ namespace Data
             {
                 CheckConnection();
                 return _class;
+            }
+        }
+
+        public IEnrollmentRepository EnrollmentRepository
+        {
+            get
+            {
+                CheckConnection();
+                return _enrollment;
             }
         }
 

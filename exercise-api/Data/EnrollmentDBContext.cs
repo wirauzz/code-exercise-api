@@ -13,6 +13,7 @@ namespace Data
         public static EnrollmentDBContext _instance;
         public DbSet<Student> Student { get; set; }
         public DbSet<Class> Class { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
         public EnrollmentDBContext(IConfiguration configuration)
         {
             _configuration = configuration;
