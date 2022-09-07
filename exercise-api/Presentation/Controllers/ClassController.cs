@@ -104,5 +104,20 @@ namespace Presentation.Controllers
         {
             return Ok(new MiddlewareResponse<ClassDTO>(await _ClassManager.UpdateById(ClassId, Class)));
         }
+
+        /// <summary>
+        /// Search a class by the title.
+        /// </summary>
+        /// <param name="title">Title of the course.</param>
+        /// <returns>Returns class information found by first name</returns>
+        /// <response code="200">Success</response>
+        /// <response code="500">Can not connect with the database</response>
+        [ProducesResponseType(typeof(MiddlewareResponse<IEnumerable<StudentDTO>>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [HttpGet("search")]
+        public async Task<IActionResult> GetTitleByTitle([FromQuery] string title)
+        {
+            return Ok(new MiddlewareResponse<IEnumerable<ClassDTO>>(await _ClassManager.SearchCourseByTitle(title)));
+        }
     }
 }

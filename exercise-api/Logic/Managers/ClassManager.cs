@@ -9,6 +9,7 @@ using Data.Models;
 using System.Threading.Tasks;
 using Logic.Exceptions;
 using Serilog;
+using System.Linq;
 
 namespace Logic.Managers
 {
@@ -132,6 +133,12 @@ namespace Logic.Managers
                 Log.Error(ex, $"{message}{Environment.NewLine} Stack trace: {Environment.NewLine}");
                 throw new LogicException(ex.Message, ex.InnerException);
             }
+        }
+
+        public async Task<IEnumerable<ClassDTO>> SearchCourseByTitle(string title)
+        {
+            IEnumerable<ClassDTO> classes = await AllClass();
+            return classes.Where(courses => courses.Title.ToLower().Trim().Contains(title.ToLower().Trim()));
         }
     }
 }

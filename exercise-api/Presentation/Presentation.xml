@@ -57,6 +57,15 @@
             </param>
             <response code="200">Success or some expected Error</response>
         </member>
+        <member name="M:Presentation.Controllers.ClassController.GetTitleByTitle(System.String)">
+            <summary>
+            Search a class by the title.
+            </summary>
+            <param name="title">Title of the course.</param>
+            <returns>Returns class information found by first name</returns>
+            <response code="200">Success</response>
+            <response code="500">Can not connect with the database</response>
+        </member>
         <member name="M:Presentation.Controllers.StudentController.GeAllStudens">
             <summary>
             Returns all Students
